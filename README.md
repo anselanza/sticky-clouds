@@ -1,4 +1,9 @@
-Welcome to your new TanStack app! 
+# Notes
+Removed TailwindCSS, using CSS modules aka "Scoped Traditional CSS" instead. To make this play nice with IDE+TypeScript, I installed the [CSS Modules Toolkit](https://github.com/mizdra/css-modules-kit) which includes an LSP to allow TypeScript to include `*.module.css` as "modules". I also needed to add `"**/*.module.css"` into the "include" section of `tsconfig.json`.
+
+___
+
+
 
 # Getting Started
 
@@ -24,10 +29,6 @@ This project uses [Vitest](https://vitest.dev/) for testing. You can run the tes
 ```bash
 npm run test
 ```
-
-## Styling
-
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
 
 
 ## Linting & Formatting
