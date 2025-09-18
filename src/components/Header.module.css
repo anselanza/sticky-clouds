@@ -1,5 +1,14 @@
 .navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
   padding: 16px;
   background-color: gray;
   border-bottom: 1px solid black;
+
+  .logo {
+    padding: 8px;
+    width: 32px;
+  }
 }

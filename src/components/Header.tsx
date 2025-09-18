@@ -1,15 +1,15 @@
-import { Link } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router';
 
-import styles from './Header.module.css'
+import Logo from '../logo.svg';
+import styles from './Header.module.css';
 
 export default function Header() {
   return (
     <header>
       <nav className={styles.navContainer}>
-        <div className="px-2 font-bold">
-          <Link to="/">Home</Link>
-        </div>
+        <img className={styles.logo} src={Logo} alt="Sticky Clouds Logo" />
+        <Link to="/">Home</Link>
       </nav>
     </header>
-  )
+  );
 }

@@ -1,6 +1,12 @@
 # Notes
 Removed TailwindCSS, using CSS modules aka "Scoped Traditional CSS" instead. To make this play nice with IDE+TypeScript, I installed the [CSS Modules Toolkit](https://github.com/mizdra/css-modules-kit) which includes an LSP to allow TypeScript to include `*.module.css` as "modules". I also needed to add `"**/*.module.css"` into the "include" section of `tsconfig.json`.
 
+When nesting CSS (you can [do this now without preprocessors like Sass](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting)!) you can refer to the **nested** class directly for CSS Modules, keeping the scoped class name, i.e. use `styles.logo` rather than `styles.header.logo` which will in fact not exist. And completion/type-checking works as expected.
+
+Favicon created using imagemagick. Simple:
+```
+convert -resize x16 -gravity center -crop 16x16+0+0 favicon.png -colors 256 -background transparent favicon.ico
+```
 ___
 
 
