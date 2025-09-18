@@ -1,0 +1,16 @@
+.sticky {
+  background-color: lightyellow;
+  border: 2px solid darkgrey;
+  margin: 16px;
+  padding: 8px;
+  width: 250px;
+
+  & h1 {
+    font-size: 16px;
+    color: gray;
+  }
+  .body {
+    font-size: 14px;
+    color: black;
+  }
+}
