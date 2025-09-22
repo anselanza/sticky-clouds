@@ -50,6 +50,9 @@ export default function Board() {
             queryClient.setQueryData(['stickies'], [...stickies, newSticky]);
             setIsAdding(false);
           }}
+          onCancel={() => {
+            setIsAdding(false);
+          }}
         />
       )}
 

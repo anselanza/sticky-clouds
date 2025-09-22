@@ -6,9 +6,10 @@ import { awaitSleep } from '@/utils/utils';
 
 interface Props {
   onComplete: (newSticky: Sticky) => any;
+  onCancel: () => any;
 }
 
-export default ({ onComplete }: Props) => {
+export default ({ onComplete, onCancel }: Props) => {
   const queryClient = useQueryClient();
 
   const [sticky, setSticky] = useState<Sticky>({
@@ -63,7 +64,7 @@ export default ({ onComplete }: Props) => {
         </div>
       </div>
       <div>
-        <button>Cancel ❌</button>
+        <button onClick={onCancel}>Cancel ❌</button>
         <button
           onClick={() => {
             mutation.mutate(sticky);
