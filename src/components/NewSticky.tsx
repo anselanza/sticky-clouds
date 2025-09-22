@@ -1,9 +1,11 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import styles from './RenderedSticky.module.css';
 import { awaitSleep } from '@/utils/utils';
 
 export default () => {
+  const queryClient = useQueryClient();
+
   const [sticky, setSticky] = useState<Sticky>({
     id: Date.now().toString(),
     title: 'Title Here',
@@ -18,6 +20,7 @@ export default () => {
         method: 'POST',
         body: JSON.stringify(newSticky),
       });
+      queryClient.invalidateQueries({ queryKey: ['stickies'] });
     },
   });
 

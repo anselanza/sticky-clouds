@@ -1,8 +1,6 @@
 import { getStore } from '@netlify/blobs';
-import type { Context } from '@netlify/edge-functions';
 
-export default async (request: Request, context: Context) => {
-  console.log('Netlify context:', JSON.stringify(context));
+export default async () => {
   const store = getStore('stickies-store');
   const list = await store.list();
   console.log('fetched store list:', list);
