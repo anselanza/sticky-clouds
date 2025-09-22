@@ -9,7 +9,7 @@ export default () => {
   const [sticky, setSticky] = useState<Sticky>({
     id: Date.now().toString(),
     title: 'Title Here',
-    body: 'Body text here',
+    body: 'Body text here: ' + (Math.random() * 1000).toFixed(0).toString(),
     position: { x: 0, y: 0 },
   });
 
@@ -20,7 +20,9 @@ export default () => {
         method: 'POST',
         body: JSON.stringify(newSticky),
       });
-      queryClient.invalidateQueries({ queryKey: ['stickies'] });
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['stickies'] });
     },
   });
 
