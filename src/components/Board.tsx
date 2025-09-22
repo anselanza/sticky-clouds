@@ -20,8 +20,8 @@ export default function Board() {
       const res = await fetch('/.netlify/functions/getStickies', {
         method: 'GET',
       });
-      const data = (await res.json()) as Array<Sticky>;
-      return data;
+      const data = (await res.json()) as Array<Sticky | null>;
+      return data.filter((x) => x !== null);
     },
   });
 
