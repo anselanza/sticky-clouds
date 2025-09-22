@@ -1,10 +1,35 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import RenderedSticky from './RenderedSticky';
+import { awaitSleep } from '@/utils/utils';
 
-interface Props {
-  stickies: Array<Sticky>;
-}
+export default function Board() {
+  const queryClient = useQueryClient();
 
-export default function Board({ stickies }: Props) {
+  const {
+    isPending,
+    isError,
+    data: stickies,
+    error,
+  } = useQuery({
+    queryKey: ['stickies'],
+    queryFn: async () => {
+      await awaitSleep(1000);
+      const res = await fetch('/.netlify/functions/getStickies', {
+        method: 'GET',
+      });
+      const data = (await res.json()) as Array<Sticky>;
+      return data;
+    },
+  });
+
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div>
       <h2>Have {stickies.length} stickies</h2>
