@@ -23,7 +23,7 @@ export default function RenderedSticky({ id, title, body, position }: Sticky) {
         <div>An error occurred: {mutation.error.message}</div>
       )}
       <button
-        onClick={async () => {
+        onClick={() => {
           mutation.mutate();
         }}
       >
