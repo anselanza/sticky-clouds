@@ -34,12 +34,12 @@ function App() {
 
   useEffect(() => {
     const getList = async () => {
-      console.log('fetching...');
-      const res = await fetch('/.netlify/functions/getStickies', {
-        method: 'GET',
-      });
-      const data = (await res.json()) as Array<Sticky>;
       if (!wasFetched) {
+        console.log('fetching...');
+        const res = await fetch('/.netlify/functions/getStickies', {
+          method: 'GET',
+        });
+        const data = (await res.json()) as Array<Sticky>;
         setWasFetched(true);
         setStickies(data);
       }
@@ -48,13 +48,13 @@ function App() {
     getList().catch((e) => {
       console.error('Error fetching data:', e);
     });
-  }, [stickies]);
+  }, [stickies, wasFetched]);
 
   return (
     <div>
       <h1>Sticky Clouds</h1>
 
-      <Board stickies={DUMMY_DATA} />
+      <Board stickies={stickies} />
     </div>
   );
 }

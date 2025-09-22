@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@netlify/blobs": "^10.0.10",
+    "@netlify/edge-functions": "^2.18.0",
     "@tanstack/react-devtools": "^0.2.2",
     "@tanstack/react-router": "^1.130.2",
     "@tanstack/react-router-devtools": "^1.131.5",

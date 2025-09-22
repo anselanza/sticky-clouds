@@ -7,6 +7,12 @@ Favicon created using imagemagick. Simple:
 ```
 convert -resize x16 -gravity center -crop 16x16+0+0 favicon.png -colors 256 -background transparent favicon.ico
 ```
+
+Manually added dummy data to store via `addSticky` function:
+
+```
+curl -i http://localhost:8888/.netlify/functions/addSticky -X POST '-d {"id":"one","title":"First","body":"This is some **test** content","position":{"x":0,"y":0}}'
+```
 ___
 
 
