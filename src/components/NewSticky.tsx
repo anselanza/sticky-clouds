@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
+import Markdown from 'react-markdown';
 import styles from './RenderedSticky.module.css';
 import { awaitSleep } from '@/utils/utils';
-import Markdown from 'react-markdown';
 
 interface Props {
   onComplete: (newSticky: Sticky) => any;
@@ -43,8 +43,24 @@ export default ({ onComplete }: Props) => {
   return (
     <div>
       <div className={styles.sticky}>
-        <h1>{sticky.title}</h1>
-        <div className={styles.body}>{sticky.body}</div>
+        <label htmlFor="title">Title:</label>
+        <input
+          name="title"
+          type="text"
+          onChange={(e) => setSticky({ ...sticky, title: e.target.value })}
+          value={sticky.title}
+        ></input>
+
+        <label htmlFor="body">Body (markdown):</label>
+        <textarea
+          name="body"
+          onChange={(e) => setSticky({ ...sticky, body: e.target.value })}
+          value={sticky.body}
+        ></textarea>
+
+        <div className={styles.body}>
+          <Markdown>{sticky.body}</Markdown>
+        </div>
       </div>
       <div>
         <button>Cancel ❌</button>

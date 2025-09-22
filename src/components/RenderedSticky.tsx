@@ -14,7 +14,7 @@ export default function RenderedSticky({ id, title, body, position }: Sticky) {
       <button
         onClick={async () => {
           console.log(`Deleting "${id}"...`);
-          await awaitSleep(1000);
+          // await awaitSleep(1000);
           await fetch(`/.netlify/functions/deleteSticky?key=${id}`);
           queryClient.invalidateQueries({ queryKey: ['stickies'] });
         }}
