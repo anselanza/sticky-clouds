@@ -2,8 +2,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import styles from './RenderedSticky.module.css';
 import { awaitSleep } from '@/utils/utils';
+import Markdown from 'react-markdown';
 
-export default () => {
+interface Props {
+  onComplete: (newSticky: Sticky) => any;
+}
+
+export default ({ onComplete }: Props) => {
   const queryClient = useQueryClient();
 
   const [sticky, setSticky] = useState<Sticky>({
@@ -20,9 +25,10 @@ export default () => {
         method: 'POST',
         body: JSON.stringify(newSticky),
       });
+      return newSticky;
     },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['stickies'] });
+    onSuccess: (data) => {
+      onComplete(data);
     },
   });
 
@@ -36,7 +42,10 @@ export default () => {
 
   return (
     <div>
-      <div className={styles.sticky}>New stuff goes here</div>
+      <div className={styles.sticky}>
+        <h1>{sticky.title}</h1>
+        <div className={styles.body}>{sticky.body}</div>
+      </div>
       <div>
         <button>Cancel ❌</button>
         <button

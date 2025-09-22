@@ -1,10 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import RenderedSticky from './RenderedSticky';
 import NewSticky from './NewSticky';
 import { awaitSleep } from '@/utils/utils';
 
 export default function Board() {
+  const queryClient = useQueryClient();
   const [isAdding, setIsAdding] = useState(false);
 
   const {
@@ -43,7 +44,14 @@ export default function Board() {
         Add another ✚
       </button>
 
-      {isAdding && <NewSticky />}
+      {isAdding && (
+        <NewSticky
+          onComplete={(newSticky) => {
+            queryClient.setQueryData(['stickies'], [...stickies, newSticky]);
+            setIsAdding(false);
+          }}
+        />
+      )}
 
       {stickies.map((s) => (
         <RenderedSticky key={`sticky-${s.id}`} {...s} />
