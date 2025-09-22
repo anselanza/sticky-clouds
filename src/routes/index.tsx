@@ -1,4 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+
 import Board from '@/components/Board';
 
 export const Route = createFileRoute('/')({
@@ -27,6 +29,27 @@ const DUMMY_DATA: Array<Sticky> = [
 ];
 
 function App() {
+  const [stickies, setStickies] = useState<Array<Sticky>>([]);
+  const [wasFetched, setWasFetched] = useState(false);
+
+  useEffect(() => {
+    const getList = async () => {
+      console.log('fetching...');
+      const res = await fetch('/.netlify/functions/getStickies', {
+        method: 'GET',
+      });
+      const data = (await res.json()) as Array<Sticky>;
+      if (!wasFetched) {
+        setWasFetched(true);
+        setStickies(data);
+      }
+    };
+
+    getList().catch((e) => {
+      console.error('Error fetching data:', e);
+    });
+  }, [stickies]);
+
   return (
     <div>
       <h1>Sticky Clouds</h1>
