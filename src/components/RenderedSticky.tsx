@@ -10,7 +10,7 @@ export default function RenderedSticky({ id, title, body, position }: Sticky) {
     mutationFn: async () => {
       console.log(`Deleting "${id}"...`);
       await fetch(`/.netlify/functions/deleteSticky?key=${id}`);
-      queryClient.invalidateQueries({ queryKey: ['stickies'] });
+      await queryClient.invalidateQueries({ queryKey: ['stickies'] });
     },
   });
   return (
