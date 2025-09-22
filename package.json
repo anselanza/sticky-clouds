@@ -25,6 +25,7 @@
     "@tanstack/router-plugin": "^1.121.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
