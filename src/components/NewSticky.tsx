@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Markdown from 'react-markdown';
 import styles from './RenderedSticky.module.css';
-import { awaitSleep } from '@/utils/utils';
+// import { awaitSleep } from '@/utils/utils';
 
 interface Props {
   onComplete: (newSticky: Sticky) => any;
@@ -10,8 +10,6 @@ interface Props {
 }
 
 export default ({ onComplete, onCancel }: Props) => {
-  const queryClient = useQueryClient();
-
   const [sticky, setSticky] = useState<Sticky>({
     id: Date.now().toString(),
     title: 'Title Here',
@@ -21,7 +19,7 @@ export default ({ onComplete, onCancel }: Props) => {
 
   const mutation = useMutation({
     mutationFn: async (newSticky: Sticky) => {
-      await awaitSleep(1000);
+      // await awaitSleep(1000);
       await fetch('/.netlify/functions/addSticky', {
         method: 'POST',
         body: JSON.stringify(newSticky),

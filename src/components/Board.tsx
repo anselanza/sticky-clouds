@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import RenderedSticky from './RenderedSticky';
 import NewSticky from './NewSticky';
-import { awaitSleep } from '@/utils/utils';
+// import { awaitSleep } from '@/utils/utils';
 
 export default function Board() {
   const queryClient = useQueryClient();
@@ -16,7 +16,7 @@ export default function Board() {
   } = useQuery({
     queryKey: ['stickies'],
     queryFn: async () => {
-      await awaitSleep(1000);
+      // await awaitSleep(1000);
       const res = await fetch('/.netlify/functions/getStickies', {
         method: 'GET',
       });
