@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import Markdown from 'react-markdown';
 import styles from './RenderedSticky.module.css';
+import RenderedSticky from './RenderedSticky';
 // import { awaitSleep } from '@/utils/utils';
 
 interface Props {
@@ -17,7 +18,7 @@ export default ({ onComplete, onCancel }: Props) => {
     position: { x: 0, y: 0 },
   });
 
-  const mutation = useMutation({
+  const { mutate, variables, isError, error, isPending } = useMutation({
     mutationFn: async (newSticky: Sticky) => {
       // await awaitSleep(1000);
       await fetch('/.netlify/functions/addSticky', {
@@ -31,12 +32,16 @@ export default ({ onComplete, onCancel }: Props) => {
     },
   });
 
-  if (mutation.isError) {
-    return <div>An error occurred: {mutation.error.message}</div>;
+  if (isError) {
+    return <div>An error occurred: {error.message}</div>;
   }
 
-  if (mutation.isPending) {
-    return <div>Adding new sticky...</div>;
+  if (isPending) {
+    return (
+      <div style={{ opacity: 0.5 }}>
+        <RenderedSticky {...variables} />
+      </div>
+    );
   }
 
   return (
@@ -65,7 +70,7 @@ export default ({ onComplete, onCancel }: Props) => {
         <button onClick={onCancel}>Cancel ❌</button>
         <button
           onClick={() => {
-            mutation.mutate(sticky);
+            mutate(sticky);
           }}
         >
           Save 💾
