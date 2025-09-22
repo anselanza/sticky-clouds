@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Markdown from 'react-markdown';
 import styles from './RenderedSticky.module.css';
 import RenderedSticky from './RenderedSticky';
+import EditingSticky from './EditingSticky';
 // import { awaitSleep } from '@/utils/utils';
 
 interface Props {
@@ -47,36 +48,13 @@ export default ({ onComplete, onCancel }: Props) => {
 
   return (
     <div>
-      <div className={styles.sticky}>
-        <label htmlFor="title">Title:</label>
-        <input
-          name="title"
-          type="text"
-          onChange={(e) => setSticky({ ...sticky, title: e.target.value })}
-          value={sticky.title}
-        ></input>
-
-        <label htmlFor="body">Body (markdown):</label>
-        <textarea
-          name="body"
-          onChange={(e) => setSticky({ ...sticky, body: e.target.value })}
-          value={sticky.body}
-        ></textarea>
-
-        <div className={styles.body}>
-          <Markdown>{sticky.body}</Markdown>
-        </div>
-      </div>
-      <div>
-        <button onClick={onCancel}>Cancel ❌</button>
-        <button
-          onClick={() => {
-            mutate(sticky);
-          }}
-        >
-          Save 💾
-        </button>
-      </div>
+      <EditingSticky
+        original={sticky}
+        onSave={(updated) => {
+          mutate(updated);
+        }}
+        onCancel={onCancel}
+      />
     </div>
   );
 };
