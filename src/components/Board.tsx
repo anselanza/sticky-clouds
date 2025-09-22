@@ -1,10 +1,8 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import RenderedSticky from './RenderedSticky';
 import { awaitSleep } from '@/utils/utils';
 
 export default function Board() {
-  const queryClient = useQueryClient();
-
   const {
     isPending,
     isError,
