@@ -1,8 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import RenderedSticky from './RenderedSticky';
+import NewSticky from './NewSticky';
 import { awaitSleep } from '@/utils/utils';
 
 export default function Board() {
+  const [isAdding, setIsAdding] = useState(false);
+
   const {
     isPending,
     isError,
@@ -30,7 +34,16 @@ export default function Board() {
 
   return (
     <div>
-      <h2>Have {stickies.length} stickies</h2>
+      <h2>We have {stickies.length} stickies</h2>
+      <button
+        onClick={() => {
+          setIsAdding(true);
+        }}
+      >
+        Add another ✚
+      </button>
+
+      {isAdding && <NewSticky />}
 
       {stickies.map((s) => (
         <RenderedSticky key={`sticky-${s.id}`} {...s} />
