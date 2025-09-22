@@ -14,7 +14,10 @@ export default function RenderedSticky({ id, title, body, position }: Sticky) {
     },
   });
   return (
-    <div className={styles.sticky}>
+    <div
+      className={styles.sticky}
+      style={{ opacity: mutation.isPending ? 0.5 : 1.0 }}
+    >
       <h1>{title}</h1>
       <div className={styles.body}>
         <Markdown>{body}</Markdown>
@@ -23,6 +26,7 @@ export default function RenderedSticky({ id, title, body, position }: Sticky) {
         <div>An error occurred: {mutation.error.message}</div>
       )}
       <button
+        disabled={mutation.isPending}
         onClick={() => {
           mutation.mutate();
         }}

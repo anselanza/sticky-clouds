@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import Markdown from 'react-markdown';
 import styles from './RenderedSticky.module.css';
@@ -36,6 +36,7 @@ export default ({ onComplete, onCancel }: Props) => {
     return <div>An error occurred: {error.message}</div>;
   }
 
+  // Optimistic Update (https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates)
   if (isPending) {
     return (
       <div style={{ opacity: 0.5 }}>
