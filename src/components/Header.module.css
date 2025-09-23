@@ -1,11 +1,21 @@
 .banner {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
 
   padding: 16px;
   background-color: gray;
   border-bottom: 1px solid black;
+
+  .left {
+    display: flex;
+    align-items: center;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+  }
 
   .logo {
     padding: 8px;
