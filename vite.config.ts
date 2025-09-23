@@ -6,7 +6,9 @@ import { devtools } from '@tanstack/devtools-vite';
 
 const config = defineConfig({
   plugins: [
-    devtools(),
+    devtools({
+      removeDevtoolsOnBuild: true,
+    }),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({
       projects: ['./tsconfig.json'],
