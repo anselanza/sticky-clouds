@@ -13,6 +13,7 @@
     "check": "prettier --write . && eslint --fix"
   },
   "dependencies": {
+    "@tanstack/devtools-vite": "^0.3.3",
     "@clerk/tanstack-react-start": "^0.24.2",
     "@netlify/blobs": "^10.0.10",
     "@netlify/edge-functions": "^2.18.0",
@@ -31,7 +32,6 @@
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
-    "@tanstack/devtools-vite": "^0.3.3",
     "@tanstack/eslint-config": "^0.3.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
