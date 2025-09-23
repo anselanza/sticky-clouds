@@ -18,7 +18,7 @@ curl -i http://localhost:8888/.netlify/functions/addSticky -X POST '-d {"id":"on
 
 ## TODO
 - [x] Use TanStack Query
-- [ ] Use Auth0 to implement authentication+authorisation for this application _without needing a server_
+- [ ] Use ~~Auth0~~ [Clerk](https://clerk.com/) to implement authentication+authorisation for this application (in this case we are doing server-side because of TanStack Start)
 - [ ] Use TanStack Forms for some fancy add/edit forms (with proper validation, etc.)
 - [ ] Actually use positions - maybe this requires the canvas?
 - [ ] Implement "linking" between stickies
