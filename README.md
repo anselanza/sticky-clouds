@@ -10,17 +10,26 @@ Favicon created using imagemagick. Simple:
 convert -resize x16 -gravity center -crop 16x16+0+0 favicon.png -colors 256 -background transparent favicon.ico
 ```
 
-Manually added dummy data to store via `addSticky` function:
+Manually added dummy data to store via `addSticky` function (although this does NOT apply to the sandboxed dev environment):
 
 ```
 curl -i http://localhost:8888/.netlify/functions/addSticky -X POST '-d {"id":"one","title":"First","body":"This is some **test** content","position":{"x":0,"y":0}}'
 ```
 
+An example using Netlify Blobs for an entire news/blog type site: https://dev.to/ra_jeeves/storyblobs-an-adventure-with-netlify-blobs-75i
+
+
+
+
+
 ## TODO
 - [x] Use TanStack Query
-- [ ] Use ~~Auth0~~ [Clerk](https://clerk.com/) to implement authentication+authorisation for this application (in this case we are doing server-side because of TanStack Start)
-- [ ] Use TanStack Forms for some fancy add/edit forms (with proper validation, etc.)
+- [x] Use ~~Auth0~~ [Clerk](https://clerk.com/) to implement authentication+authorisation for this application (in this case we are doing server-side because of TanStack Start)
+- [ ] Turn off TanStack Router devtools when in production/live
+- [ ] Stickies should be saved "per user"
+- [ ] Use TanStack Forms _or_ [React Hook Form](https://react-hook-form.com/) for some fancy add/edit forms (with proper validation, etc.)
 - [ ] Actually use positions - maybe this requires the canvas?
 - [ ] Implement "linking" between stickies
 - [ ] Implement "grouping" (draw a box)
 - [ ] Use a "proper" DB (Netlify DB or external)
+- [ ] Use Netlify Blobs for uploading of image content (only!)
